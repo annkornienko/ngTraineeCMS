@@ -1,0 +1,14 @@
+<div class="categories" ng-controller = "CategoriesCtrl">
+  <spinner show= 'spinnerShown'></spinner>
+  <div class="row">
+    <a href="http://localhost:3000/settings" ng-repeat = "category in listCategory track by $index ">
+    <div class="col-sm-2">
+      <figure>
+        <img class= "img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="" >
+      <figcaption>{{category}}</figcaption>
+    </figure>
+    </div>
+    </a>
+  </div>
+
+</div>

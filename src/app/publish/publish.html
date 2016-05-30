@@ -1,0 +1,42 @@
+<div class="editor" ng-controller = "PostCtrl as post_ctrl">
+  <div class="editor-title">
+    <div class="form-group" ng-submit = "addCategory()">
+
+      <!-- <label for="inputPassword3" class="col-sm-2 control-label">Password</label> -->
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-class="{'no-border': toggle}" ng-model = "some" placeholder="Title" />
+      </div>
+  </div>
+</div>
+  <div class="editor-toolbar">
+    <div class="editor-toolbar-container">
+      <div class="editor-toolbar-addCategories">
+        <button class = "btn btn-sm btn-default" ng-click = "toggleModalAdd()" type="button" name="button"> Add categories</button>
+        <span class = "newCategories" ng-repeat="item in getCategoriesToService">
+            {{$index + 1}}. {{item}}
+        </span><br>
+        <modal-dialog-add show = "modalShownAdd"  width = "370px" height = "230%" category = {{some}}>
+         <!-- <h3>Add a new category</h3> -->
+   </modal-dialog-add>
+
+      </div>
+      <div class="editor-toolbar-chooseCategories">
+        <button class = "btn btn-sm btn-default" ng-click = "toggleModalChoose()" type="button" name="button"> Choose categories</button>
+        <span class = "newCategories" ng-repeat="item1 in chooseCategoriesToService">
+            {{$index + 1}}. {{item1}}
+        </span><br>
+
+        <modal-dialog-choose show = "modalShownChoose"  width = "560px" height = "400%" category = {{some}}>
+         <!-- <h3>Add a new category</h3> -->
+   </modal-dialog-choose>
+   {{getCategories}}
+      </div>
+
+  </div>
+
+  <div class="editor-header">
+    <textarea name="name" rows="15" cols="85"></textarea>
+  </div>
+<button  id="publish-post" type="button" class="btn btn-primary">Publish</button>
+</div>
+</div>

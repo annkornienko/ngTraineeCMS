@@ -1,0 +1,142 @@
+body{
+  /*position: relative;*/
+}
+.checklist-model{
+  position: absolute;
+  width: 550px;
+  height: 280px;
+  overflow:scroll;
+  column-count: 3;
+  padding-left: -40px;
+  /*margin-left: 0px;*/
+}
+.checklist-model label {
+  margin-left:-10px;
+  display: block;
+  margin: -19px;
+  padding: -30px;
+
+}
+.checklist-model input{
+  width: 30px;
+  padding: 100px;
+  margin-left: -30px;
+}
+.chooseCategoryResult{
+    /*margin: 190px 20px 0px 250px;*/
+}
+#buttonChooseCategory{
+  margin: 290px 20px 0px 210px;
+}
+.editor-title {
+  margin-top: 22px;
+}
+.editor-header textarea{
+  margin-top: 40px;
+  /*margin-left: 40px;*/
+}
+.editor-title input{
+  font-size: 25px;
+  width: 700px;
+  height: 50px;
+}
+#publish-post{
+  /*margin-left: 40px;*/
+}
+.editor-toolbar {
+  position: absolute;
+  margin-top: 55px;
+  margin-left: 40px;
+  width: 700px;
+  height: 92px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+.editor-toolbar-container button{
+  display: inline-block;
+  margin: 10px 0px 0px 10px;
+}
+.ng-modal-overlay {
+  /* A dark translucent div that covers the whole screen */
+  position:fixed;
+  z-index:9999;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color: rgba(0,0,0,0.5);
+  /*background-color:#000000;*/
+  opacity: 0.8;
+}
+.ng-modal-dialog {
+  /* A centered div above the overlay with a box shadow. */
+  z-index:10000;
+  position: absolute;
+  width: 50%; /* Default */
+  height: auto;
+  /* Center the dialog */
+  top: 184%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+
+  background-color: #fff;
+  box-shadow: 4px 4px 80px #000;
+}
+
+#modalView{
+  margin: 10px;
+  font-weight: bold;
+  font-family: 'arial', 'sans-serif';
+  font-size: 25px;
+  color: #286090;
+}
+#modalView input{
+  width: 300px;
+  margin: 25px;
+}
+
+.ng-modal-dialog-content {
+  padding:10px;
+  text-align: left;
+}
+.ng-modal-close {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 120%;
+  display: inline-block;
+  font-weight: bold;
+  font-family: 'arial', 'sans-serif';
+}
+.ng-modal-dialog input{
+  width: 30px;
+  margin: 20px;
+
+}
+.editor-toolbar h3{
+  text-align: center;
+}
+#buttonSaveCategory{
+  position: absolute;
+  top: 140px;
+  right: 140px;
+}
+#buttonCancelCategory{
+  position: absolute;
+  top: 140px;
+  right: 50px;
+}
+.newCategories{
+  position: relative;
+  border: 1px gray solid;
+  border-radius: 4px;
+  margin-left: 10px;
+  top: 5px;
+  /*margin-top: 30px;*/
+  padding: 5px;
+  font-size: 13px;
+}
