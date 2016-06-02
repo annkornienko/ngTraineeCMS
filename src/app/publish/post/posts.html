@@ -1,0 +1,23 @@
+<div class="posts" ng-controller = "listPostsCtrl">
+  <div class="header-posts">
+    <nav id="navPosts" class="navbar navbar-default">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li>
+              <a href="#">Published  <span class="badge">{{listCategory.length}}</span></a>
+            </li>
+            <li>
+              <a href="#">Filter</a>
+            </li>
+          </ul>
+      </div>
+    </nav>
+    </div>
+    <div class="main-posts" ng-repeat = "bla in listCategory track by $index">
+      <div class="content-posts">
+        <span>{{bla.title}}</span>
+        <span>{{bla.text}}</span>
+        <span>{{bla.categories}}</span>
+      </div>
+    </div>
+</div>

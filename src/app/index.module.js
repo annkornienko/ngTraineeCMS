@@ -1,6 +1,6 @@
 (function() {
   'use strict';
 
-  angular.module('ngtrainee', ['ngResource', 'ui.router', 'firebase', 'checklist-model','ui.bootstrap']);
+  angular.module('ngtrainee', ['ngResource', 'firebase', 'ui.router',  'ui.bootstrap']);
 
 })();

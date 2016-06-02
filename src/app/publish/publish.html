@@ -4,7 +4,7 @@
 
       <!-- <label for="inputPassword3" class="col-sm-2 control-label">Password</label> -->
       <div class="col-sm-10">
-        <input type="text" class="form-control" ng-class="{'no-border': toggle}" ng-model = "some" placeholder="Title" />
+        <input type="text" class="form-control" ng-class="{'no-border': toggle}" ng-model = "postTitle" placeholder="Title" />
       </div>
   </div>
 </div>
@@ -26,7 +26,7 @@
             {{$index + 1}}. {{item1}}
         </span><br>
 
-        <modal-dialog-choose show = "modalShownChoose"  width = "560px" height = "400%" category = {{some}}>
+        <modal-dialog-choose show = "modalShownChoose"  width = "560px" height = "365%" category = {{some}}>
          <!-- <h3>Add a new category</h3> -->
    </modal-dialog-choose>
    {{getCategories}}
@@ -35,8 +35,11 @@
   </div>
 
   <div class="editor-header">
-    <textarea name="name" rows="15" cols="85"></textarea>
+    <textarea name="name" rows="15" cols="85" ng-model = "postText"></textarea>
   </div>
-<button  id="publish-post" type="button" class="btn btn-primary">Publish</button>
+<!-- <notify succes = "showNotifySuccess" fail = "showNotifyFail"></notify> -->
+<button  id="publish-post" ng-click = "addNewCategoriesFB()" type="button" class="btn btn-primary">Publish</button>
+<!-- <div class = "notify" ng-show = "showNotify"><p>fnskgnjgnfknfjkgnsfnskfnjdjskfnskfnsfnsnfnsjnfksnj</p></div> -->
+<!-- </add-post> -->
 </div>
 </div>
