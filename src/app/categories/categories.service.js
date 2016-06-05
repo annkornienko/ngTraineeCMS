@@ -16,6 +16,10 @@ app.service("CategoriesStore", [ function($rootScope, $scope) {
     categories:[],
     arrCat:[],
     chooseCategories:[],
+    categoriesKeys:[],
+    categoryKey:[],
+    obj:{},
+    listChooseCategory:"",
     // addAllCategoryToService: function(category,id) {
     //   console.log(categories);
     //   var category = category;

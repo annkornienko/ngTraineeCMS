@@ -13,11 +13,26 @@
       </div>
     </nav>
     </div>
-    <div class="main-posts" ng-repeat = "bla in listCategory track by $index">
+    <modal-dialog-edit show = "modalShownEdit"  width = "500px" height = "400px">
+     <!-- <h3>Add a new category</h3> -->
+    </modal-dialog-edit>
+    <div class="main-posts" ng-repeat = "post in post track by $index">
       <div class="content-posts">
-        <span>{{bla.title}}</span>
-        <span>{{bla.text}}</span>
-        <span>{{bla.categories}}</span>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click = "removeRecord(post)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+
+        <button class="btn btn-primary btn" data-title="Edit" data-toggle="modal" ng-click = "editRecord(post); toggleModalEdit(post.$id)" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button>
+        <span>{{post.title}}</span>
+        <br>
+        <br>
+        <span>{{post.text}}</span>
+        <br>
+        <span>{{post.categories}}</span>
+        <br>
+        <span>{{post.timeCreate}}</span>
+        <br>
+        <span>{{post.lastModify}}</span>
+        <br>
       </div>
     </div>
+
 </div>

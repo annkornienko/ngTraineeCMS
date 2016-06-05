@@ -1,6 +1,7 @@
 var app = angular.module("ngtrainee");
 app.service("PostsStore",[ function ($rootScope, $scope) {
   var posts = [];
+  var postId = {};
   this.listCategory = {
 
     addPostToService: function (title,text) {
@@ -29,6 +30,9 @@ app.service("FBPosts", ['$firebase',  function ($firebase) {
     array: sync.$asArray(),  //download the data into a local object
     createPost:function(value) {
       sync.$asArray().$add(value)
+    },
+    deletePost:function(value) {
+      sync.$asArray().$remove(value)
     }
   }
 }]);

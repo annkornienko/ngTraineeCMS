@@ -1,10 +1,23 @@
 <div class="editor" ng-controller = "PostCtrl as post_ctrl">
   <div class="editor-title">
-    <div class="form-group" ng-submit = "addCategory()">
+    <form  name="formPost">
 
+
+    <div class="form-group" ng-submit = "addCategory()"  ng-class="{ 'has-error':formPost.postTitle.$touched && formPost.postTitle.$error.required , 'has-success': formPost.postTitle.$valid }">
+      <!-- <label for="postTitle" class="col-sm-1 control-label"></label> -->
+                <div class="col-sm-10">
+                    <input type="text" id="postTitle" name="postTitle" class="form-control" ng-model="postTitle" placeholder="Title"required />
+                </div>
       <!-- <label for="inputPassword3" class="col-sm-2 control-label">Password</label> -->
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-class="{'no-border': toggle}" ng-model = "postTitle" placeholder="Title" />
+      <!-- <div class="col-sm-10"> -->
+        <!-- <input type="text" class="form-control" name="postTitle" ng-class="{'no-border': toggle}" ng-model = "postTitle" ng-minlength = "3" ng-maxlength = "12" placeholder="Title" required /> -->
+        <div class="col-sm-3">
+    <span class="help-block" ng-show="formPost.postTitle.$touched && formPost.postTitle.$error.minlength && formPost.postTitle.$error.maxlength && formPost.postTitle.$invalid && formPost.postTitle.$invalid.$error.required">Please enter First Name.</span>
+</div>
+        <!-- <span ng-show="formPost.postTitle.$touched && formPost.postTitle.$invalid"> The name is required</span> -->
+        <!-- <div ng-messages="<formPost>.<postTitle>.$error">
+    <p ng-message="<required>">Your message here.</p>
+</div> -->
       </div>
   </div>
 </div>
@@ -15,7 +28,7 @@
         <span class = "newCategories" ng-repeat="item in getCategoriesToService">
             {{$index + 1}}. {{item}}
         </span><br>
-        <modal-dialog-add show = "modalShownAdd"  width = "370px" height = "230%" category = {{some}}>
+        <modal-dialog-add show = "modalShownAdd"  width = "461px" height = "210%">
          <!-- <h3>Add a new category</h3> -->
    </modal-dialog-add>
 
@@ -35,11 +48,12 @@
   </div>
 
   <div class="editor-header">
-    <textarea name="name" rows="15" cols="85" ng-model = "postText"></textarea>
+    <textarea name="name" rows="15" cols="85" ng-model = "postText" ng-maxlength="1000" required></textarea>
   </div>
-<!-- <notify succes = "showNotifySuccess" fail = "showNotifyFail"></notify> -->
+<notify success = "showNotifySuccess" fail = "showNotifyFail"></notify>
 <button  id="publish-post" ng-click = "addNewCategoriesFB()" type="button" class="btn btn-primary">Publish</button>
 <!-- <div class = "notify" ng-show = "showNotify"><p>fnskgnjgnfknfjkgnsfnskfnjdjskfnskfnsfnsnfnsjnfksnj</p></div> -->
 <!-- </add-post> -->
 </div>
+</form>
 </div>

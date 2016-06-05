@@ -1,18 +1,11 @@
 <div class='ng-modal' ng-show= 'show'>
   <div class='ng-modal-overlay' ng-click='hideModal()'>
   </div>
-
   <div class='ng-modal-dialog' ng-style='dialogStyle'>
-    <div class="checklist-model">
-      <label ng-repeat="role in getCategories track by $index">
-        <input type="checkbox" ng-checked = "selection.indexOf(role) > -1" ng-click = "toggleSelection(role)" value = "{{role}}" > {{role}}
+    <div class="checklist-model" >
+      <label  ng-repeat = "item in getCategories track by $index">
+        <input type="checkbox" value="item.allId" ng-click = "toggleSelection(item.allCategories,item.allId)"> {{item.allCategories}}
       </label>
-      <br>
-      <p>
-        <!-- {{selectedIndex}} -->
-        <!-- Your choise{{getCategories[selectedIndex]}} -->
-      </p>
-
       <br><br>
     </div>
     <div class="buttonChooseCategory">
@@ -20,10 +13,7 @@
       <button ng-click='hideModal()' type='button' class='btn btn-default'>Cancel</button>
     </div>
     <div class="chooseCategoryResult">
-      <!-- <span ng-repeat = "select in selection">{{select}}</span> -->
-      <!-- <pre>{{selection}}</pre> -->
     </div>
-
     <!-- <button id = 'buttonCancelCategory' ng-click='hideModal()' type='button' class='btn btn-default'>Cancel</button> -->
     <div class='ng-modal-dialog-content' ng-transclude></div>
   </div>

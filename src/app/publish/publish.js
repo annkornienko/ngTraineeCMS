@@ -3,13 +3,14 @@ app.controller('PostCtrl',
 function( $scope, CategoriesStore, PostsStore, FBPosts,FBCategories, $filter, $timeout) {
   //assign value from out of the arrays service where kept new category(temporary)
   $scope.getCategoriesToService = CategoriesStore.listCategory.arrCat;
-  console.log($scope.getCategoriesToService );
+  console.log($scope.getCategoriesToService);
   $scope.chooseCategoriesToService = CategoriesStore.listCategory.chooseCategories;
   console.error($scope.chooseCategoriesToService)
   $scope.modalShownAdd = false;
   $scope.modalShownChoose = false;
-  // $scope.showNotifySuccess = true;
-  // $scope.showNotifyFail = false;
+  $scope.showNotifySuccess = false;
+  $scope.showNotifyFail = false;
+
   //ani,ation fire and then with timeout(2000) shownotify = false
   $scope.toggleNotify = function(){
     $scope.showNotify = true;
@@ -39,20 +40,22 @@ function( $scope, CategoriesStore, PostsStore, FBPosts,FBCategories, $filter, $t
   $scope.addNewCategoriesFB = function(ref) {
     $scope.myData = FBCategories.array;
     console.log("WOED");
-    console.log($scope.getCategoriesToService);
     // Add new categories to our database
     var timestamp = new Date().valueOf();
     // Creates a new record in the database and adds the record to our local synchronized array.
     //This method returns a promise which is resolved after data has been saved to the server.
     // The promise resolves to the Firebase reference for the newly added record,
     //providing easy access to its key.
-    // if (CategoriesStore.listCategory.arrCat.length > 0)
+
+    //if created new category execute this code
+    if ($scope.getCategoriesToService.length > 0 ){
+      console.log($scope.getCategoriesToService);
       $scope.myData.$add({name:CategoriesStore.listCategory.arrCat.toString()}).then(function(ref){
         //console.log("id" + ref.key());
+        // console.log($scope.chooseCategoriesToService);
          var title = $scope.postTitle;
          var today = $filter('date')(new Date(), "yyyy-mm-dd");
          var lastModify = $filter('date')(new Date(), "yyyy-mm-dd");
-         console.log($scope.last);
 
          // $scope.posts = FBPosts.array;
          FBPosts.createPost({title: title, categories:ref.key(), text: $scope.postText, lastModify:lastModify, timeCreate:today});
@@ -61,39 +64,40 @@ function( $scope, CategoriesStore, PostsStore, FBPosts,FBCategories, $filter, $t
          // console.log(typeof($scope.getCategoriesToService));
          $scope.getCategoriesToService.length = 0;
          $scope.chooseCategoriesToService.length = 0;
-        //  $scope.showNotifySuccess = true;
-        //  $timeout(function() {
-        //    $scope.showNotifySuccess = false;
-        //  }, 3000);
+         $scope.showNotifySuccess = true;
+         $timeout(function() {
+           $scope.showNotifySuccess = false;
+         }, 3000);
 
       // return last;
       });
     }
-    // else {
-    //   $scope.showNotifyFail = true;
-    //   $timeout(function() {
-    //     $scope.showNotifyFail = false;
-    //   }, 3000);
-    // }
-    // }
+    else if($scope.chooseCategoriesToService.length > 0) {
+      var title = $scope.postTitle;
+      var today = $filter('date')(new Date(), "dd-MM-yyyy");
+      var lastModify = $filter('date')(new Date(), "dd-MM-yyyy");
 
+      // $scope.posts = FBPosts.array;
+      FBPosts.createPost({title: title,categories:CategoriesStore.listCategory.categoryKey.toString(), text: $scope.postText, lastModify:lastModify, timeCreate:today});
+      console.log(CategoriesStore.listCategory.categoryKey);
+      $scope.postTitle = "";
+      $scope.postText = "";
+      // console.log(typeof($scope.getCategoriesToService));
+      $scope.getCategoriesToService.length = 0;
+      $scope.chooseCategoriesToService.length = 0;
+      $scope.showNotifySuccess = true;
+      $timeout(function() {
+        $scope.showNotifySuccess = false;
+      }, 3000);
 
-  // $scope.addPost =  function(last){
-  //   var title = $scope.postTitle;
-  //   var today = $filter('date')(new Date(), "yyyy-mm-dd");
-  //   var lastModify = $filter('date')(new Date(), "yyyy-mm-dd");
-  //   // $scope.posts = FBPosts.array;
-  //   console.log($scope.addNewCategoriesFB());
-  //   FBPosts.createPost({title: title, categories:CategoriesStore.listCategory.arrCat.toString(), text: $scope.postText, lastModify:lastModify, timeCreate:today});
-  //   $scope.postTitle = "";
-  //   $scope.postText = "";
-  //   // console.log(typeof($scope.getCategoriesToService));
-  //   $scope.getCategoriesToService.length = 0;
-  //   $scope.chooseCategoriesToService.length = 0;
-  // }
-
-
-
+    }
+    else {
+      $scope.showNotifyFail = true;
+      $timeout(function() {
+        $scope.showNotifyFail = false;
+      }, 3000);
+    }
+  }
 });
 
 

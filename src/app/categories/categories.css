@@ -11,3 +11,20 @@ figcaption{
   border:none;
   text-align:center;
 }
+.posts .container-fluid {
+  margin-right: 330px;
+}
+#navPosts {
+  top: 24px;
+  left: 120px;
+}
+.main-posts{
+  position: relative;
+  border: 1px solid #f8f8f8;
+  width: 538px;
+  height: 300px;
+  top: 15px;
+  left: 122px;
+  background-color: #f8f8f8;
+  margin-bottom: 15px;
+}

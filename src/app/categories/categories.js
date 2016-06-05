@@ -1,48 +1,74 @@
  var app = angular.module('ngtrainee');
 app.controller("CategoriesCtrl",
-  function ($scope, $http,$firebase,$timeout,CategoriesStore,FBCategories ) {
-    $scope.spinnerShown = true;
+  function ($scope,filterFilter, $http,$firebase,$timeout,CategoriesStore,FBPosts,FBCategories ) {
+    // $scope.spinnerShown = true;
     // $scope.example = CategoriesStore.listCategory.getCategory();
-    $scope.listCategory = [];
+    // $scope.listCategory = [];
+    $scope.listChooseCategory = [];
+    $scope.listPost = [];
+    console.log();
+    // $scope.list = [];
     // synchronize the object with a three-way data binding
-      FBCategories.object.$loaded()
-        .then(function(x) {
-          angular.forEach(FBCategories.object, function(value, key) {
-            $scope.listCategory.push(value.name);
-            $scope.spinnerShown = false;
-          });
-        })
-        .catch(function(error) {
-          console.log("Error:", error);
-        });
-        // syncObject.$bindTo($scope, "data");
-        // var categ = new Firebase('https://ngtrainee-kornienko.firebaseio.com/categories');
-        // var post = new Firebase('https://ngtrainee-kornienko.firebaseio.com/posts');
-        // var catpost = post.child(categ).child("category");
-        // catpost.child(snap.key()).once("value", function(){})
+//     $scope.items = FBPosts.firebase;
+//         $scope.items.$on('loaded', function() {
+//           console.log($scope.items['']); // this writes undefined to console
+// });
+      FBCategories.firebase.on('child_added',
+       function(snapshot) {
+         var sync = $firebase(FBCategories.firebase)
+         $scope.sync1 = sync.$asArray();
+        //  console.log(snapshot.val());
+        //  $scope.listCategory.push({newPost,a});
+        //  $scope.list.push(a);
+        //  console.log($scope.listCategory);
+         $scope.spinnerShown = false;
+       });
 
-    //   ref.on('child_added',
-    //    function(snapshot) {
-    //      var newPost = snapshot.key();
-    //      console.log(sync.id);
-    //      console.log(snapshot.key());
-    //      $scope.listCategory.push(newPost);
-    //      console.log($scope.listCategory);
-    //   // $.each(newPost, function(){
-    //   //     $scope.listCategory.push(newPost.name);
-    //   //     console.error($scope.listCategory);
-    //   // })
-    // })
-    // $scope.listCategory = CategoriesStore.categories;
-    //
-    // $scope.$on( 'categories.update',
-    // function( event ) {
-    //   $scope.listCategory = CategoriesStore.categories;
-    // });
+
+      FBPosts.firebase.on('child_added',
+       function(snapshot) {
+         var post1 = $firebase(FBPosts.firebase)
+         $scope.post = post1.$asArray();
+        //  var newPost = snapshot.val();
+        //  console.log(newPost.title);
+        //  console.log(newPost.categories);
+        //  console.log(newPost.categoryKey)
+        //  var a = snapshot.key();
+        // //  console.log(snapshot.val());
+        //  $scope.listPost.push({newPost,a});
+        //  console.log($scope.listCategory);
+
+        //  $scope.list.push(a);
+        //  console.log($scope.listCategory);
+         $scope.spinnerShown = false;
+       })
+
 
       // $scope.listCategory = CategoriesStore.categories;
       // $http.get('app/categories/categories.json').success(function(data) {
       // $scope.categories = data;
 //  });
+// CategoriesStore.listCategory.listChooseCategory = "cvbnm";
 
+      $scope.selectedKey = function(category) {
+        console.log(category);
+        CategoriesStore.listCategory.listChooseCategory = category;
+
+      }
 });
+
+app.filter('outputPost' , function(CategoriesStore){
+  return function(input){
+    var out = [];
+    angular.forEach(input, function(key) {
+        console.log(key.categories);
+        console.log(CategoriesStore.listCategory.listChooseCategory);
+      if (key.categories === CategoriesStore.listCategory.listChooseCategory) {
+        // console.log(key.newPost.categories);
+        out.push(key)
+        console.log(out);
+      }
+    })
+    return out;
+  }
+})

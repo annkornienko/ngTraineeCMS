@@ -32,11 +32,18 @@ function(CategoriesStore, FBCategories, $firebase) {
 
       //Add new create category to servicу(to display selected)
       scope.addAllCategoryToService = function () {
-        scope.prefs.arrCat.push(scope.newCategory);
-        scope.show = false;
-        // scope.newCategory = '';
-        console.log(scope.newCategory);
-        //return scope.lastData;
+        if (scope.newCategory.length > 0) {
+          console.log(scope.newCategory.length);
+          scope.prefs.arrCat.push(scope.newCategory);
+          scope.show = false;
+          // scope.newCategory = '';
+          console.log(scope.newCategory);
+          //return scope.lastData;
+        }
+        else {
+          scope.show = false;
+        }
+
       };
     },
     templateUrl: 'app/publish/modalDialog/addCategory.html'

@@ -1,0 +1,19 @@
+<div class='ng-modal' ng-show= 'show'>
+  <div class='ng-modal-edit-overlay' ng-click='hideModal()'>
+  </div>
+
+  <div class='ng-modal-edit-dialog' ng-style='dialogStyle'>
+    <div class="form-group" ng-submit = "addCategoryToFB()">
+      <div class="col-sm-10"  >
+        <label id="modalView">
+          Edit post<input id="inputTitle" type="text" class="form-control"  ng-class="{'no-border': toggle}" ng-model= "myValue  " />
+          <input id="inputHidden" type="hidden" class="form-control"  ng-class="{'no-border': toggle}" ng-model= "myValue  " />
+        </label>
+        <textarea name="name" rows="10" cols="47"></textarea>
+      </div>
+    </div>
+    <button id = 'buttonSaveEdit'  type='submit' class='btn btn-primary' ng-click = "updatePost()">Save</button>
+    <button id = 'buttonCancelEdit' ng-click='hideModal()' type='button' class='btn btn-default'>Cancel</button>
+    <div class='ng-modal-dialog-content' ng-transclude></div>
+  </div>
+</div>
